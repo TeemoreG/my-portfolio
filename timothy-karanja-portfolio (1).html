@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timothy Njenga Karanja | Network Specialist & Automation Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00ff9d;
+            --secondary: #0066ff;
+            --dark: #0f1419;
+            --darker: #0a0e13;
+            --text: #f0f4f8;
+            --text-muted: #a0aec0;
+            --accent: #ff3366;
+            --card-bg: rgba(30, 41, 59, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Syne', sans-serif;
+            background: var(--darker);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Grid Background */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, rgba(0, 255, 157, 0.05) 1px, transparent 1px),
+                linear-gradient(rgba(0, 255, 157, 0.05) 1px, transparent 1px);
+            background-size: 60px 60px;
+            z-index: 0;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
+        }
+
+        .gradient-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.2;
+            z-index: 0;
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: var(--primary);
+            top: -200px;
+            right: -100px;
+        }
+
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--secondary);
+            bottom: -150px;
+            left: -100px;
+            animation-delay: -5s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation */
+        nav {
+            padding: 25px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 15, 26, 0.9);
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 8px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0;
+            animation: fadeIn 1s ease-out 0.3s backwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(0, 255, 157, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 50px;
+            color: var(--primary);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        h1 {
+            font-size: clamp(40px, 7vw, 80px);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, var(--text) 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -2px;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(18px, 2.5vw, 24px);
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 700px;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 16px 40px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--darker);
+            box-shadow: 0 0 30px rgba(0, 255, 157, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 40px rgba(0, 255, 157, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            background: rgba(0, 255, 157, 0.05);
+        }
+
+        /* Stats Section */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 80px;
+            animation: fadeIn 1s ease-out 0.6s backwards;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 40px rgba(0, 255, 157, 0.15);
+            background: rgba(30, 41, 59, 0.7);
+        }
+
+        .stat-number {
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 0;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .section-header {
+            margin-bottom: 60px;
+        }
+
+        .section-tag {
+            color: var(--primary);
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .section-description {
+            color: var(--text-muted);
+            font-size: 18px;
+            max-width: 700px;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .skill-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 50px rgba(0, 255, 157, 0.2);
+            background: rgba(30, 41, 59, 0.7);
+        }
+
+        .skill-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .skill-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+
+        .skill-card p {
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        /* Tech Stack */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .tech-tag {
+            padding: 10px 20px;
+            background: rgba(0, 255, 157, 0.05);
+            border: 1px solid rgba(0, 255, 157, 0.2);
+            border-radius: 50px;
+            color: var(--primary);
+            font-size: 14px;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+            transition: all 0.3s ease;
+        }
+
+        .tech-tag:hover {
+            background: rgba(0, 255, 157, 0.15);
+            transform: translateY(-2px);
+        }
+
+        /* Experience Section */
+        .experience-list {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .experience-item {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-left: 4px solid var(--primary);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 40px rgba(0, 255, 157, 0.15);
+            background: rgba(30, 41, 59, 0.7);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .experience-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .experience-company {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .experience-period {
+            color: var(--text-muted);
+            font-size: 14px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .experience-description {
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .contact-card {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text);
+            display: block;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 40px rgba(0, 255, 157, 0.2);
+            background: rgba(30, 41, 59, 0.7);
+        }
+
+        .contact-icon {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .contact-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .contact-card p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            nav {
+                padding: 20px 0;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .logo {
+                font-size: 22px;
+            }
+
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+                gap: 20px;
+                font-size: 12px;
+                flex-wrap: wrap;
+            }
+
+            .nav-links a {
+                font-size: 13px;
+                letter-spacing: 0.5px;
+            }
+
+            .hero {
+                padding: 60px 0;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .experience-header {
+                flex-direction: column;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Selection */
+        ::selection {
+            background: var(--primary);
+            color: var(--darker);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+
+    <div class="container">
+        <nav>
+            <div class="logo">TK.</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <section class="hero">
+            <div class="hero-content">
+                <span class="hero-tag">👋 AVAILABLE FOR PROJECTS</span>
+                <h1>Timothy Njenga Karanja</h1>
+                <p class="hero-subtitle">
+                    AI-driven automation specialist architecting scalable web systems, CRM automations, and intelligent AI-powered solutions. Expert in Python, JavaScript, n8n, Make.com, and modern AI APIs to engineer robust digital infrastructures that enhance operational efficiency and accelerate business processes.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn btn-primary">
+                        <span>Let's Connect</span>
+                        <span>→</span>
+                    </a>
+                    <a href="https://github.com/TeemoreG" target="_blank" class="btn btn-secondary">
+                        <span>View GitHub</span>
+                        <span>↗</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number">65</div>
+                    <div class="stat-label">GitHub Contributions</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Active Projects</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">4+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">30+</div>
+                    <div class="stat-label">Automation Workflows</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="section-header">
+                <div class="section-tag">WHO I AM</div>
+                <h2>About Me</h2>
+                <p class="section-description">
+                    I'm a recent <strong>IT graduate from Karatina University</strong> with <strong>Second Class Upper Division honors (GPA 3.3/4.0)</strong>, specializing in AI-driven automation, end-to-end system integration, and digital workflow optimization. As a <strong>freelance developer and automation specialist</strong>, I architect and deploy scalable web systems, CRM automations, and intelligent AI-powered solutions for a diverse international client base. 
+                    <br><br>
+                    I leverage proficiency in <strong>Python, JavaScript, HTML, CSS, Node.js</strong>, along with automation platforms like <strong>n8n, Make.com</strong>, and modern <strong>AI APIs</strong> to engineer robust, remote-optimized digital infrastructures. My work enhances operational efficiency, reduces manual overhead, and accelerates business processes for clients worldwide.
+                    <br><br>
+                    From building custom learning management systems to creating AI chatbots and automated workflow systems, I bring a combination of technical expertise, creative problem-solving, and dedication to delivering high-quality digital solutions.
+                </p>
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="section-header">
+                <div class="section-tag">WHAT I DO</div>
+                <h2>Skills & Expertise</h2>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">⚙️</div>
+                    <h3>AI & Automation Engineering</h3>
+                    <p>Building intelligent AI-powered solutions using LLM APIs, custom API integrations, prompt engineering, and AI workflow design. Expert in creating conversational agents and automating complex business processes.</p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">🔄</div>
+                    <h3>Workflow Automation & Integration</h3>
+                    <p>Architecting end-to-end automation systems with n8n, Make.com, and Zapier. Seamlessly integrating third-party APIs, CRM systems, and digital marketing tools to scale businesses and drive monetization.</p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">💻</div>
+                    <h3>Full-Stack Development</h3>
+                    <p>Beginner in Developing robust web applications with HTML, CSS, JavaScript, Node.js, and Python. Building responsive front-end frameworks, dynamic content management systems, and custom automation scripts for data extraction and system integration.</p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">🎓</div>
+                    <h3>E-Learning Systems & LMS</h3>
+                    <p>Creating custom learning management systems with automated enrollment, payment tracking, and student data management. Supporting online class platforms and digital record systems for educational institutions.</p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">🖧</div>
+                    <h3>IT Support & Networking</h3>
+                    <p>Providing comprehensive IT troubleshooting, software installation, and system updates. Strong foundation in TCP/IP, DNS, routing fundamentals, network stability maintenance, and device configuration.</p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">🔐</div>
+                    <h3>Cybersecurity & System Management</h3>
+                    <p>Implementing access control, data integrity measures, and system hygiene best practices. Managing secure digital infrastructures with focus on data protection and cybersecurity awareness.</p>
+                </div>
+            </div>
+
+            <div class="tech-stack">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">HTML/CSS</span>
+                <span class="tech-tag">n8n</span>
+                <span class="tech-tag">Make.com</span>
+                <span class="tech-tag">Zapier</span>
+                <span class="tech-tag">ChatGPT API</span>
+                <span class="tech-tag">API Integration</span>
+                <span class="tech-tag">WordPress</span>
+                <span class="tech-tag">Git/GitHub</span>
+                <span class="tech-tag">CRM Systems</span>
+                <span class="tech-tag">TCP/IP</span>
+                <span class="tech-tag">NLP</span>
+                <span class="tech-tag">DNS</span>
+                <span class="tech-tag">SEO</span>
+            </div>
+        </section>
+
+        <section id="experience">
+            <div class="section-header">
+                <div class="section-tag">WHERE I'VE WORKED</div>
+                <h2>Professional Experience</h2>
+            </div>
+
+            <div class="experience-list">
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <h3 class="experience-title">Web & Digital Systems Designer</h3>
+                            <div class="experience-company">Smart Option Media</div>
+                        </div>
+                        <div class="experience-period">May 2024 - Dec 2025 (Remote)</div>
+                    </div>
+                    <p class="experience-description">
+                        Engineered robust web applications by integrating responsive front-end frameworks and dynamic content management solutions. Built and managed websites, landing pages, and automated digital workflows using n8n and Make.com. Developed custom Python and JavaScript scripts for automation and API integrations. Implemented AI-powered processes using ChatGPT API and custom connections. Managed client communication, CRM system automations, and improved SEO, performance, and automated reporting for client projects.
+                    </p>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <h3 class="experience-title">ICT & E-Learning Support Assistant</h3>
+                            <div class="experience-company">Elite Tutors Hub</div>
+                        </div>
+                        <div class="experience-period">2023 - Dec 2025</div>
+                    </div>
+                    <p class="experience-description">
+                        Supported student registration, data accuracy, and digital record management. Managed onboarding workflows and assisted with scheduling and communication. Organized e-learning platforms and supported online class systems across multiple time zones. Contributed to automated payment tracking and LMS workflow development, enhancing operational efficiency.
+                    </p>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <h3 class="experience-title">AI Trainer & Freelance Web Designer</h3>
+                            <div class="experience-company">Freelance (Ongoing)</div>
+                        </div>
+                        <div class="experience-period">2026</div>
+                    </div>
+                    <p class="experience-description">
+                        Managing AI training tasks, prompt engineering, AI output feedback, and website testing. Building and managing websites for small businesses and individuals globally. Providing ongoing technical support, content upload, and site maintenance services to diverse clients.
+                    </p>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <h3 class="experience-title">IT Support Attachment</h3>
+                            <div class="experience-company">Egerton University</div>
+                        </div>
+                        <div class="experience-period">2023</div>
+                    </div>
+                    <p class="experience-description">
+                        Assisted staff with troubleshooting, software installation, and system updates. Helped maintain network stability, device setups, and lab systems. Performed data entry, system monitoring, and comprehensive IT documentation for university infrastructure.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-header">
+                <div class="section-tag">EDUCATION & CREDENTIALS</div>
+                <h2>Education & Certifications</h2>
+            </div>
+
+            <div class="experience-list">
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <h3 class="experience-title">BSc. Information Technology</h3>
+                            <div class="experience-company">Karatina University, Nyeri</div>
+                        </div>
+                        <div class="experience-period">2021 - 2025</div>
+                    </div>
+                    <p class="experience-description">
+                        Second Class Upper Division (3.3/4.0 GPA)<br>
+                        Minor in Networking<br>
+                        Key Focus: Networking Software Development, System Integration, AI & Automation, Web Technologies
+                    </p>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <h3 class="experience-title">Kenya Certificate of Secondary Education (KCSE)</h3>
+                            <div class="experience-company">Njoro Day Secondary School</div>
+                        </div>
+                        <div class="experience-period">2017 - 2021</div>
+                    </div>
+                    <p class="experience-description">Grade: B</p>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <h3 class="experience-title">Kenya Certificate of Primary Education (KCPE)</h3>
+                            <div class="experience-company">Ndarugu Primary School, Njoro</div>
+                        </div>
+                        <div class="experience-period">2009 - 2016</div>
+                    </div>
+                    <p class="experience-description">Score: 378/500</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-header">
+                <div class="section-tag">FEATURED PROJECTS</div>
+                <h2>Projects & Implementations</h2>
+            </div>
+
+            <div class="experience-list">
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <h3 class="experience-title">AI Chatbot Prototype for a Farmers website</h3>
+                            <div class="experience-company">University Project</div>
+                        </div>
+                        <div class="experience-period">Jan 2024 - Jan 2025</div>
+                    </div>
+                    <p class="experience-description">
+                        Engineered a Python-based conversational AI chatbot with NLP capabilities that automated farmer replies and assistance. Integrated into a custom-built farmers' learning management system, providing automated support and educational content delivery.
+                    </p>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <h3 class="experience-title">Automated Workflow Systems</h3>
+                            <div class="experience-company">SmartOption Media</div>
+                        </div>
+                        <div class="experience-period">Jan 2025 - Sep 2025</div>
+                    </div>
+                    <p class="experience-description">
+                        Built comprehensive n8n and Make.com workflows integrated with third-party APIs, designed for scaling businesses and monetization in digital marketing. Implemented CRM automations, payment processing, and lead management systems.
+                    </p>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <h3 class="experience-title">Custom Learning Management System</h3>
+                            <div class="experience-company">Elite Tutors Hub</div>
+                        </div>
+                        <div class="experience-period">Jan 2025 - Oct 2025</div>
+                    </div>
+                    <p class="experience-description">
+                        Developed a custom e-learning platform featuring automated enrollment, payment tracking, student data management, and course delivery systems. Streamlined administrative workflows and improved student onboarding efficiency.
+                    </p>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <h3 class="experience-title">Web Automation Scripts</h3>
+                            <div class="experience-company">SmartOption Media</div>
+                        </div>
+                        <div class="experience-period">Jan 2025 - Dec 2025</div>
+                    </div>
+                    <p class="experience-description">
+                        Created JavaScript and Python automation scripts for data extraction, web scraping, and system integration. Developed API connectors and automated reporting tools that reduced manual data processing time by 70%.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-header">
+                <div class="section-tag">BEYOND WORK</div>
+                <h2>Hobbies & Interests</h2>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">🎓</div>
+                    <h3>Continuous Learning</h3>
+                    <p>Attending IT webinars and hackathons to stay current with emerging technologies and industry trends.</p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">🧪</div>
+                    <h3>AI Experimentation</h3>
+                    <p>Experimenting with cutting-edge AI tools and automation scripts to discover innovative solutions.</p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">💻</div>
+                    <h3>Open Source Contribution</h3>
+                    <p>Contributing to open-source projects on GitHub and collaborating with the developer community.</p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">🔐</div>
+                    <h3>Cybersecurity Research</h3>
+                    <p>Reading about cybersecurity trends, digital innovation, and emerging security threats.</p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">⚡</div>
+                    <h3>Personal Projects</h3>
+                    <p>Building and testing personal web automation projects to refine skills and explore new technologies.</p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">🌍</div>
+                    <h3>Global Collaboration</h3>
+                    <p>Working with international teams and clients across different time zones and cultures.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="section-header">
+                <div class="section-tag">GET IN TOUCH</div>
+                <h2>Let's Work Together</h2>
+                <p class="section-description">
+                    I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Let's build something amazing together.
+                </p>
+            </div>
+
+            <div class="contact-grid">
+                <a href="/cdn-cgi/l/email-protection#0e7a67636c626f763e4e69636f6762206d6163" class="contact-card">
+                    <div class="contact-icon">📧</div>
+                    <h3>Email</h3>
+                    <p><span class="__cf_email__" data-cfemail="a5d1ccc8c7c9c4dd95e5c2c8c4ccc98bc6cac8">[email&#160;protected]</span></p>
+                </a>
+
+                <a href="tel:+254740940395" class="contact-card">
+                    <div class="contact-icon">📱</div>
+                    <h3>Phone</h3>
+                    <p>+254 740 940 395</p>
+                </a>
+
+                <a href="https://github.com/TeemoreG" target="_blank" class="contact-card">
+                    <div class="contact-icon">💻</div>
+                    <h3>GitHub</h3>
+                    <p>@TeemoreG</p>
+                </a>
+
+                <a href="https://smartoptionmedia.com" target="_blank" class="contact-card">
+                    <div class="contact-icon">🌐</div>
+                    <h3>SmartOption Media</h3>
+                    <p>Visit my agency</p>
+                </a>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 Timothy Njenga Karanja. Building smart digital systems that connect people, automate work, and drive business growth.</p>
+        </footer>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section, .skill-card, .experience-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(el);
+        });
+
+        // Add active state to nav links on scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section[id]');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+       
