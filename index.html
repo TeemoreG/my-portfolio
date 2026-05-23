@@ -2,1106 +2,736 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Timothy Njenga Karanja · AI & Automation Specialist</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     :root {
-      --bg:        #18191c;
-      --bg-card:   #212328;
-      --bg-raised: #2a2b30;
-      --border:    rgba(255,255,255,0.07);
-      --border-md: rgba(255,255,255,0.11);
-      --ink:       #f0f1f3;
-      --ink-soft:  #b8bcc8;
-      --ink-muted: #737885;
-      --accent:    #7c9cff;
-      --accent-dim:#3a54a8;
-      --accent-pale:rgba(124,156,255,0.1);
-      --green:     #22c55e;
-      --shadow:    0 2px 20px rgba(0,0,0,0.35);
-      --shadow-lg: 0 12px 48px rgba(0,0,0,0.5);
+      --bg-body: #f5f7fc;
+      --bg-surface: #ffffff;
+      --bg-card: #ffffff;
+      --bg-elevated: #f8fafd;
+      --border-light: #e9edf2;
+      --border-med: #dee4ec;
+      --text-primary: #1a2634;
+      --text-secondary: #4a5a6e;
+      --text-muted: #7e8c9f;
+      --accent: #3b82f6;
+      --accent-dark: #2563eb;
+      --accent-soft: #eef4ff;
+      --accent-glow: #dbeafe;
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03);
+      --shadow-md: 0 12px 30px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 25px 40px -12px rgba(0, 0, 0, 0.1);
     }
-
-    html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
-      color: var(--ink);
-      line-height: 1.65;
-      overflow-x: hidden;
+      background-color: var(--bg-body);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.5;
+      scroll-behavior: smooth;
     }
 
-    /* ── NAV ── */
-    nav {
+    /* custom scroll */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--border-light); border-radius: 10px; }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+
+    /* navbar */
+    .navbar {
       position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 200;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 60px;
-      background: rgba(24,25,28,0.85);
-      backdrop-filter: blur(24px);
-      border-bottom: 1px solid var(--border);
-      transition: padding 0.3s;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-light);
+      z-index: 1000;
+      padding: 0.9rem 2rem;
+      transition: all 0.2s;
     }
-    nav.scrolled { padding: 14px 60px; }
-
-    .nav-logo {
-      font-family: 'Instrument Serif', serif;
-      font-size: 1.35rem;
-      color: var(--ink);
-      text-decoration: none;
-      letter-spacing: -0.3px;
-    }
-    .nav-logo span { color: var(--accent); }
-
-    .nav-links { display: flex; gap: 32px; list-style: none; }
-    .nav-links a {
-      font-size: 0.82rem;
-      font-weight: 500;
-      text-decoration: none;
-      color: var(--ink-muted);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      transition: color 0.2s;
-      position: relative;
-    }
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px; left: 0;
-      width: 0; height: 1.5px;
-      background: var(--accent);
-      transition: width 0.25s ease;
-    }
-    .nav-links a:hover { color: var(--ink); }
-    .nav-links a:hover::after { width: 100%; }
-
-    .nav-cta {
-      font-size: 0.82rem;
-      font-weight: 600;
-      text-decoration: none;
-      color: var(--bg);
-      background: var(--accent);
-      padding: 9px 22px;
-      border-radius: 100px;
-      letter-spacing: 0.02em;
-      transition: opacity 0.2s, transform 0.15s;
-    }
-    .nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
-
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      padding: 140px 60px 100px;
-      gap: 80px;
+    .nav-container {
       max-width: 1300px;
       margin: 0 auto;
-    }
-
-    .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      border: 1px solid var(--accent-dim);
-      background: var(--accent-pale);
-      padding: 6px 16px;
-      border-radius: 100px;
-      margin-bottom: 32px;
-    }
-    .hero-eyebrow::before {
-      content: '';
-      width: 6px; height: 6px;
-      background: var(--accent);
-      border-radius: 50%;
-      animation: blink 2s infinite;
-    }
-    @keyframes blink {
-      0%,100% { opacity: 1; } 50% { opacity: 0.3; }
-    }
-
-    .hero h1 {
-      font-family: 'Instrument Serif', serif;
-      font-size: clamp(3rem, 5vw, 4.8rem);
-      line-height: 1.06;
-      letter-spacing: -2px;
-      color: var(--ink);
-      margin-bottom: 10px;
-    }
-    .hero h1 em { font-style: italic; color: var(--accent); }
-
-    .hero-role {
-      font-size: 1rem;
-      font-weight: 300;
-      color: var(--ink-muted);
-      margin-bottom: 28px;
-      letter-spacing: 0.02em;
-    }
-
-    .hero-bio {
-      font-size: 1rem;
-      color: var(--ink-soft);
-      line-height: 1.8;
-      font-weight: 300;
-      max-width: 460px;
-      margin-bottom: 44px;
-      padding-left: 18px;
-      border-left: 2px solid var(--accent-dim);
-    }
-
-    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      background: var(--accent);
-      color: var(--bg);
-      padding: 13px 26px;
-      border-radius: 100px;
-      font-size: 0.88rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.2s;
-    }
-    .btn-primary:hover { opacity: 0.88; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(124,156,255,0.25); }
-
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      background: transparent;
-      color: var(--ink-soft);
-      padding: 13px 26px;
-      border-radius: 100px;
-      font-size: 0.88rem;
-      font-weight: 500;
-      text-decoration: none;
-      border: 1px solid var(--border-md);
-      transition: all 0.2s;
-    }
-    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
-
-    /* ── HERO RIGHT ── */
-    .hero-right {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 20px;
-    }
-
-    .stat-cards {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      width: 100%;
-      max-width: 360px;
-    }
-
-    .stat-card {
-      background: var(--bg-card);
-      border-radius: 18px;
-      padding: 26px 22px;
-      border: 1px solid var(--border);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .stat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
-    .stat-card:nth-child(1) { background: var(--accent); }
-    .stat-card:nth-child(1) .stat-num { color: var(--bg); }
-    .stat-card:nth-child(1) .stat-label { color: rgba(24,25,28,0.65); }
-    .stat-card:nth-child(3) { background: var(--bg-raised); border-color: var(--border-md); }
-
-    .stat-num {
-      font-family: 'Instrument Serif', serif;
-      font-size: 2.8rem;
-      line-height: 1;
-      letter-spacing: -2px;
-      color: var(--ink);
-      margin-bottom: 6px;
-    }
-    .stat-label {
-      font-size: 0.72rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--ink-muted);
-    }
-
-    .avail-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      padding: 11px 20px;
-      font-size: 0.83rem;
-      font-weight: 500;
-      color: var(--ink-soft);
-    }
-    .avail-dot {
-      width: 7px; height: 7px;
-      background: var(--green);
-      border-radius: 50%;
-      animation: blink 2s infinite;
-    }
-
-    /* ── LAYOUT ── */
-    .section-wrap { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
-    section { padding: 100px 0; }
-
-    .section-label {
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 14px;
       display: flex;
       align-items: center;
-      gap: 12px;
+      justify-content: space-between;
     }
-    .section-label::before {
-      content: '';
-      display: block;
-      width: 28px; height: 1.5px;
-      background: var(--accent);
+    .logo {
+      font-family: 'Space Grotesk', monospace;
+      font-weight: 700;
+      font-size: 1.45rem;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
     }
-
-    .section-title {
-      font-family: 'Instrument Serif', serif;
-      font-size: clamp(2rem, 3.5vw, 3.2rem);
-      line-height: 1.1;
-      letter-spacing: -1px;
-      color: var(--ink);
-      margin-bottom: 60px;
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
     }
-    .section-title em { font-style: italic; color: var(--accent); }
-
-    .divider { height: 1px; background: var(--border); max-width: 1200px; margin: 0 auto; }
-
-    /* ── EXPERIENCE ── */
-    #experience { background: var(--bg); }
-
-    .exp-grid {
-      display: grid;
-      grid-template-columns: 260px 1fr;
-      gap: 80px;
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.85rem;
+      transition: color 0.2s;
     }
-    .exp-sidebar-desc {
-      font-size: 0.95rem;
-      color: var(--ink-muted);
-      font-weight: 300;
-      line-height: 1.8;
+    .nav-links a:hover {
+      color: var(--accent);
     }
-    .exp-list { display: flex; flex-direction: column; }
-
-    .exp-item {
-      padding: 36px 0;
-      border-top: 1px solid var(--border);
-      display: grid;
-      grid-template-columns: 150px 1fr;
-      gap: 36px;
-    }
-    .exp-item:last-child { border-bottom: 1px solid var(--border); }
-
-    .exp-date {
+    .btn-cv {
+      background: var(--accent-soft);
+      border: 1px solid var(--border-med);
+      padding: 0.45rem 1.2rem;
+      border-radius: 40px;
       font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      color: var(--ink-muted);
-      text-transform: uppercase;
-      margin-bottom: 6px;
-      padding-top: 4px;
-    }
-    .exp-company {
-      font-size: 0.83rem;
       font-weight: 600;
       color: var(--accent);
     }
-    .exp-title {
-      font-family: 'Instrument Serif', serif;
-      font-size: 1.28rem;
-      color: var(--ink);
-      margin-bottom: 10px;
-      letter-spacing: -0.3px;
-    }
-    .exp-desc {
-      font-size: 0.88rem;
-      color: var(--ink-muted);
-      font-weight: 300;
-      line-height: 1.75;
-      margin-bottom: 14px;
-    }
-    .exp-achievements { list-style: none; display: flex; flex-direction: column; gap: 7px; }
-    .exp-achievements li {
-      font-size: 0.86rem;
-      color: var(--ink-soft);
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      line-height: 1.6;
-    }
-    .exp-achievements li::before {
-      content: '→';
-      color: var(--accent);
-      font-size: 0.8rem;
-      margin-top: 2px;
-      flex-shrink: 0;
+    .btn-cv:hover {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
     }
 
-    /* ── SKILLS ── */
-    #skills { background: var(--bg-card); }
-
-    .skills-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: start;
+    /* layout */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
     }
-
-    .skill-category { margin-bottom: 34px; }
-    .skill-cat-title {
+    section {
+      padding: 5rem 0;
+    }
+    .section-header {
+      margin-bottom: 3rem;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--accent-soft);
+      border-radius: 40px;
+      padding: 0.25rem 1rem;
       font-size: 0.7rem;
       font-weight: 600;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.2px;
+      color: var(--accent);
+      border: 1px solid var(--accent-glow);
+      margin-bottom: 1rem;
+    }
+    h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    /* hero */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      padding-top: 5rem;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .hero-left .greeting {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      color: var(--accent);
+      margin-bottom: 1rem;
       text-transform: uppercase;
-      color: var(--ink-muted);
-      margin-bottom: 12px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--border);
     }
-    .skill-tags { display: flex; flex-wrap: wrap; gap: 7px; }
-    .skill-tag {
-      font-size: 0.78rem;
+    .hero-left h1 {
+      font-size: 3.6rem;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+    .hero-desc {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin: 1.5rem 0;
+      border-left: 3px solid var(--accent);
+      padding-left: 1.2rem;
+      max-width: 90%;
+    }
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      padding: 0.75rem 1.8rem;
+      border-radius: 48px;
+      font-weight: 600;
+      color: white;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: all 0.2s;
+      box-shadow: 0 2px 6px rgba(59,130,246,0.2);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 22px -10px var(--accent);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border-med);
+      padding: 0.75rem 1.8rem;
+      border-radius: 48px;
       font-weight: 500;
-      padding: 6px 13px;
-      border-radius: 100px;
-      background: var(--bg-raised);
-      color: var(--ink-soft);
-      border: 1px solid var(--border);
-      transition: all 0.18s;
-      cursor: default;
+      color: var(--text-secondary);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: all 0.2s;
     }
-    .skill-tag:hover { background: var(--accent-pale); color: var(--accent); border-color: var(--accent-dim); }
-    .skill-tag.hi { background: var(--accent-pale); color: var(--accent); border-color: var(--accent-dim); }
-
-    .prof-item { margin-bottom: 24px; }
-    .prof-header { display: flex; justify-content: space-between; margin-bottom: 8px; }
-    .prof-name { font-size: 0.86rem; font-weight: 500; color: var(--ink); }
-    .prof-pct { font-size: 0.76rem; color: var(--ink-muted); }
-    .prof-bar { height: 2px; background: var(--bg-raised); border-radius: 100px; overflow: hidden; }
-    .prof-fill {
-      height: 100%;
-      background: var(--accent);
-      border-radius: 100px;
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 1.1s cubic-bezier(0.4,0,0.2,1) 0.2s;
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft);
     }
-    .prof-fill.on { transform: scaleX(1); }
+    .stats-row {
+      display: flex;
+      gap: 1.8rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    .stat {
+      background: var(--bg-surface);
+      padding: 0.7rem 1.2rem;
+      border-radius: 32px;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
+    }
+    .stat-number {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+    .stat-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+    .hero-right {
+      background: var(--bg-surface);
+      border-radius: 2rem;
+      padding: 2rem;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-md);
+    }
 
-    /* ── PROJECTS ── */
-    #projects { background: var(--bg); }
+    /* experience cards */
+    .exp-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .exp-card {
+      background: var(--bg-surface);
+      border-radius: 1.25rem;
+      padding: 1.5rem;
+      border: 1px solid var(--border-light);
+      transition: all 0.25s;
+      box-shadow: var(--shadow-sm);
+    }
+    .exp-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-bottom: 0.5rem;
+    }
+    .exp-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+    .exp-date {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 0.2rem 0.7rem;
+      border-radius: 40px;
+    }
+    .exp-company {
+      color: var(--accent-dark);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      font-size: 0.85rem;
+    }
+    .exp-desc {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+    .exp-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .exp-list li {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+    }
+    .exp-list li i {
+      color: var(--accent);
+      font-size: 0.7rem;
+    }
 
+    /* skills section */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+    .skill-category h4 {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .chip-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+    .chip {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-light);
+      padding: 0.4rem 1rem;
+      border-radius: 60px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: all 0.2s;
+    }
+    .chip:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    /* projects */
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+      gap: 1.5rem;
     }
-
-    /* KEY FIX: no ::after pseudo overlay — use border transition instead */
     .project-card {
-      background: var(--bg-card);
-      border-radius: 18px;
-      padding: 28px;
-      border: 1px solid var(--border);
-      transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
-      display: flex;
-      flex-direction: column;
+      background: var(--bg-surface);
+      border-radius: 1.25rem;
+      padding: 1.5rem;
+      border: 1px solid var(--border-light);
+      transition: all 0.25s;
+      box-shadow: var(--shadow-sm);
     }
     .project-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-6px);
+      border-color: var(--accent);
       box-shadow: var(--shadow-lg);
-      border-color: var(--accent-dim);
     }
-    .project-card.featured {
-      grid-column: span 2;
-      background: var(--accent-dim);
-      border-color: transparent;
+    .project-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
     }
-    .project-card.featured:hover { border-color: var(--accent); }
-    .project-card.featured .proj-title { color: var(--ink); }
-    .project-card.featured .proj-desc { color: rgba(240,241,243,0.7); }
-    .project-card.featured .tech-chip { background: rgba(255,255,255,0.1); color: rgba(240,241,243,0.85); border-color: transparent; }
-    .project-card.featured .project-link { color: var(--accent); }
-
-    .proj-icon { font-size: 1.5rem; margin-bottom: 16px; }
-    .proj-title {
-      font-family: 'Instrument Serif', serif;
-      font-size: 1.22rem;
-      color: var(--ink);
-      margin-bottom: 9px;
-      letter-spacing: -0.2px;
+    .project-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
     }
-    .proj-desc {
-      font-size: 0.86rem;
-      color: var(--ink-muted);
-      line-height: 1.72;
-      font-weight: 300;
-      flex-grow: 1;
-      margin-bottom: 18px;
+    .project-desc {
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      line-height: 1.5;
+      margin-bottom: 1rem;
     }
-    .tech-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 18px; }
-    .tech-chip {
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      padding: 3px 10px;
-      border-radius: 100px;
-      background: var(--bg-raised);
-      color: var(--ink-muted);
-      border: 1px solid var(--border);
-      text-transform: uppercase;
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
     }
-    .project-links { display: flex; gap: 16px; }
+    .tech-stack span {
+      background: var(--accent-soft);
+      font-size: 0.65rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: 60px;
+      color: var(--accent-dark);
+    }
     .project-link {
-      font-size: 0.79rem;
-      font-weight: 600;
       color: var(--accent);
       text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 600;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      transition: gap 0.18s, opacity 0.18s;
-      letter-spacing: 0.02em;
+      gap: 0.4rem;
     }
-    .project-link:hover { gap: 10px; opacity: 0.75; }
 
-    /* ── TESTIMONIALS ── */
-    #testimonials { background: var(--bg-card); }
-
-    .testi-grid {
+    /* testimonials */
+    .testimonials-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+      gap: 1.5rem;
     }
-    .testi-card {
-      background: var(--bg-raised);
-      border-radius: 18px;
-      padding: 30px;
-      border: 1px solid var(--border);
-      transition: transform 0.2s, box-shadow 0.2s;
+    .testimonial-card {
+      background: var(--bg-surface);
+      border-radius: 1.25rem;
+      padding: 1.5rem;
+      border: 1px solid var(--border-light);
     }
-    .testi-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
-
-    .quote-mark {
-      font-family: 'Instrument Serif', serif;
-      font-size: 3.8rem;
-      color: var(--accent-dim);
-      line-height: 0.6;
-      margin-bottom: 16px;
-      display: block;
+    .quote {
+      font-size: 2rem;
+      color: var(--accent);
+      opacity: 0.5;
+      margin-bottom: 0.3rem;
     }
-    .testi-text {
-      font-size: 0.88rem;
-      color: var(--ink-soft);
-      line-height: 1.8;
-      font-weight: 300;
+    .testimonial-text {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
       font-style: italic;
-      margin-bottom: 22px;
     }
-    .testi-author {
+    .testimonial-author {
       display: flex;
       align-items: center;
-      gap: 11px;
-      padding-top: 16px;
-      border-top: 1px solid var(--border);
+      gap: 0.6rem;
+      border-top: 1px solid var(--border-light);
+      padding-top: 1rem;
     }
-    .testi-avatar {
-      width: 38px; height: 38px;
+    .avatar {
+      width: 34px;
+      height: 34px;
+      background: var(--accent-soft);
       border-radius: 50%;
-      background: var(--accent-pale);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Instrument Serif', serif;
-      font-size: 0.95rem;
+      font-weight: bold;
       color: var(--accent);
-      flex-shrink: 0;
-      border: 1px solid var(--accent-dim);
     }
-    .testi-name { font-size: 0.86rem; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
-    .testi-role { font-size: 0.73rem; color: var(--ink-muted); }
 
-    /* ── CERTIFICATIONS ── */
-    #certifications { background: var(--bg); }
-
+    /* education & certs */
     .edu-block {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 26px 30px;
-      margin-bottom: 32px;
+      background: var(--bg-surface);
+      border-radius: 1.25rem;
+      padding: 1.5rem;
       display: flex;
-      align-items: flex-start;
-      gap: 18px;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      border: 1px solid var(--border-light);
     }
-    .edu-icon { font-size: 1.5rem; color: var(--accent); margin-top: 2px; }
-    .edu-deg { font-size: 0.98rem; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
-    .edu-detail { font-size: 0.85rem; color: var(--ink-muted); font-weight: 300; }
-
-    .certs-strip { display: flex; flex-wrap: wrap; gap: 9px; }
-    .cert-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      font-size: 0.83rem;
-      font-weight: 500;
-      padding: 10px 18px;
-      border-radius: 100px;
-      border: 1px solid var(--border-md);
-      background: var(--bg-card);
-      color: var(--ink-soft);
-      transition: all 0.2s;
-    }
-    .cert-chip i { color: var(--accent); font-size: 0.92rem; }
-    .cert-chip:hover { border-color: var(--accent); color: var(--ink); background: var(--accent-pale); }
-
-    /* ── CONTACT ── */
-    #contact { background: var(--bg-card); padding: 100px 0; }
-
-    #contact .section-label { color: var(--accent); }
-    #contact .section-title { color: var(--ink); margin-bottom: 14px; }
-
-    .contact-sub {
-      font-size: 0.98rem;
-      color: var(--ink-muted);
-      font-weight: 300;
-      max-width: 440px;
-      margin-bottom: 44px;
-      line-height: 1.8;
-    }
-    .contact-links { display: flex; flex-wrap: wrap; gap: 11px; margin-bottom: 52px; }
-    .contact-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      padding: 12px 22px;
-      border-radius: 100px;
-      text-decoration: none;
-      font-size: 0.86rem;
-      font-weight: 500;
-      transition: all 0.2s;
-    }
-    .contact-link.primary { background: var(--accent); color: var(--bg); font-weight: 600; }
-    .contact-link.primary:hover { opacity: 0.88; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(124,156,255,0.2); }
-    .contact-link.ghost {
-      background: var(--bg-raised);
-      color: var(--ink-soft);
-      border: 1px solid var(--border-md);
-    }
-    .contact-link.ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
-
-    .contact-info {
+    .certs-strip {
       display: flex;
-      gap: 40px;
-      padding-top: 36px;
-      border-top: 1px solid var(--border);
       flex-wrap: wrap;
+      gap: 0.7rem;
     }
-    .ci-label {
-      font-size: 0.66rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--ink-muted);
-      margin-bottom: 4px;
+    .cert-chip {
+      background: var(--bg-elevated);
+      border-radius: 60px;
+      padding: 0.4rem 1rem;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      border: 1px solid var(--border-light);
     }
-    .ci-value { font-size: 0.88rem; color: var(--ink-soft); font-weight: 300; }
 
-    /* ── FOOTER ── */
-    footer {
-      background: var(--bg);
-      border-top: 1px solid var(--border);
-      padding: 26px 60px;
+    /* contact */
+    .contact-grid {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
+      gap: 2rem;
     }
-    footer p { font-size: 0.76rem; color: var(--ink-muted); }
-    footer a { color: var(--ink-muted); text-decoration: none; transition: color 0.2s; }
-    footer a:hover { color: var(--accent); }
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1.2rem;
+    }
+    .contact-btn {
+      background: var(--bg-surface);
+      padding: 0.55rem 1.2rem;
+      border-radius: 60px;
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      border: 1px solid var(--border-light);
+      transition: all 0.2s;
+    }
+    .contact-btn i {
+      margin-right: 0.4rem;
+      color: var(--accent);
+    }
+    .contact-btn:hover {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--border-light);
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
 
-    /* ── REVEAL ── */
-    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .d1 { transition-delay: 0.1s; }
-    .d2 { transition-delay: 0.2s; }
-    .d3 { transition-delay: 0.3s; }
-    .d4 { transition-delay: 0.4s; }
-
-    /* ── MOBILE ── */
     @media (max-width: 900px) {
-      nav { padding: 14px 24px; }
-      .nav-links { display: none; }
-      .hero { grid-template-columns: 1fr; padding: 110px 24px 60px; min-height: auto; gap: 50px; }
-      .hero-right { align-items: flex-start; }
-      .section-wrap { padding: 0 24px; }
-      .exp-grid { grid-template-columns: 1fr; gap: 32px; }
-      .exp-item { grid-template-columns: 1fr; gap: 8px; }
-      .skills-layout { grid-template-columns: 1fr; }
-      .projects-grid { grid-template-columns: 1fr; }
-      .project-card.featured { grid-column: auto; }
-      .testi-grid { grid-template-columns: 1fr; }
-      footer { flex-direction: column; gap: 10px; text-align: center; padding: 22px 24px; }
+      .hero-grid, .skills-grid, .projects-grid, .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+      h2 {
+        font-size: 2rem;
+      }
+      .hero-left h1 {
+        font-size: 2.3rem;
+      }
+      .nav-links {
+        display: none;
+      }
+      .container {
+        padding: 0 1.2rem;
+      }
+      section {
+        padding: 3rem 0;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav id="nav">
-    <a href="#" class="nav-logo">Timothy <span>NJ</span></a>
-    <ul class="nav-links">
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#testimonials">Testimonials</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <a href="https://docs.google.com/document/d/1Wo3kyteQ96IQLk43bAiRUDFsuBU4i9uP/edit?usp=drive_link&ouid=107989905331542175879&rtpof=true&sd=true" target="_blank" rel="noopener" class="nav-cta">Download CV</a>
-  </nav>
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="logo">TNK<span style="color: var(--accent);">//</span>ai</div>
+    <div class="nav-links">
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Work</a>
+      <a href="#testimonials">Clients</a>
+      <a href="#contact">Contact</a>
+      <a href="https://docs.google.com/document/d/1Wo3kyteQ96IQLk43bAiRUDFsuBU4i9uP/edit?usp=drive_link&ouid=107989905331542175879&rtpof=true&sd=true" target="_blank" class="btn-cv"><i class="fas fa-file-alt"></i> CV</a>
+    </div>
+  </div>
+</nav>
 
-  <!-- HERO -->
+<main>
+  <!-- Hero -->
   <section class="hero">
-    <div class="hero-left">
-      <div class="hero-eyebrow">Available for work · Nairobi &amp; Remote</div>
-      <h1>Timothy<br><em>Njenga</em><br>Karanja</h1>
-      <p class="hero-role">AI &amp; Automation Specialist · Systems Integrator</p>
-      <p class="hero-bio">
-        I build intelligent systems that make businesses run smoother — from AI-powered chatbots and CRM automation to end-to-end workflow engineering. Based in Nairobi, working with clients worldwide.
-      </p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn-primary"><i class="fas fa-envelope"></i> Get in touch</a>
-        <a href="https://docs.google.com/document/d/1Wo3kyteQ96IQLk43bAiRUDFsuBU4i9uP/edit?usp=drive_link&ouid=107989905331542175879&rtpof=true&sd=true" target="_blank" rel="noopener" class="btn-secondary"><i class="fas fa-file-alt"></i> View CV</a>
-      </div>
-    </div>
-
-    <div class="hero-right">
-      <div class="stat-cards">
-        <div class="stat-card">
-          <div class="stat-num">5+</div>
-          <div class="stat-label">Years building</div>
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-left">
+          <div class="greeting"><i class="fas fa-microchip"></i> AI AUTOMATION & DATA SPECIALIST</div>
+          <h1>Timothy <span class="gradient-text">Njenga</span> Karanja</h1>
+          <p class="hero-desc">AI data annotation, workflow automation & systems integration expert. I build intelligent pipelines that bridge Swahili AI models and real business impact.</p>
+          <div class="btn-group">
+            <a href="#contact" class="btn-primary"><i class="fas fa-paper-plane"></i> Start a project</a>
+            <a href="#projects" class="btn-outline"><i class="fas fa-code"></i> Explore work</a>
+          </div>
+          <div class="stats-row">
+            <div class="stat"><span class="stat-number">5+</span><div class="stat-label">Years building</div></div>
+            <div class="stat"><span class="stat-number">50+</span><div class="stat-label">Automations</div></div>
+            <div class="stat"><span class="stat-number">10K+</span><div class="stat-label">AI annotations</div></div>
+          </div>
         </div>
-        <div class="stat-card">
-          <div class="stat-num">50+</div>
-          <div class="stat-label">Automations shipped</div>
+        <div class="hero-right">
+          <i class="fas fa-robot" style="font-size: 2rem; color: var(--accent); margin-bottom: 0.5rem;"></i>
+          <h3 style="margin-bottom: 0.5rem;">🧠 Swahili AI Specialist</h3>
+          <p style="color: var(--text-secondary); font-size: 0.85rem;">Native Swahili (Nairobi dialect) · Pairwise comparisons · Object tagging · Quality assurance for LLMs</p>
+          <div style="margin-top: 1.2rem;"><span style="background: #eef4ff; color: #2563eb; padding: 4px 12px; border-radius: 40px; font-size: 0.7rem;"><i class="fas fa-check-circle"></i> Available for freelance & full-time</span></div>
         </div>
-        <div class="stat-card">
-          <div class="stat-num">20+</div>
-          <div class="stat-label">Clients served</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">3</div>
-          <div class="stat-label">Live platforms</div>
-        </div>
-      </div>
-      <div class="avail-badge">
-        <span class="avail-dot"></span>
-        Open to freelance &amp; full-time roles
       </div>
     </div>
   </section>
 
-  <div class="divider"></div>
-
-  <!-- EXPERIENCE -->
+  <!-- Experience FULL including iMerit -->
   <section id="experience">
-    <div class="section-wrap">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge"><i class="fas fa-briefcase"></i> career impact</div>
+        <h2>Where I've <span class="gradient-text">delivered results</span></h2>
+      </div>
       <div class="exp-grid">
-        <div class="reveal">
-          <div class="section-label">Career</div>
-          <div class="section-title" style="margin-bottom:20px;">Where I've<br><em>made impact</em></div>
-          <p class="exp-sidebar-desc">Four years shipping real systems for real businesses — healthcare, ed-tech, digital marketing, and beyond.</p>
+        <div class="exp-card">
+          <div class="exp-header"><span class="exp-title">AI Data Annotator & Digital Systems Assistant</span><span class="exp-date">July 2025 – April 2026</span></div>
+          <div class="exp-company">iMerit Technologies · Remote (AI Training)</div>
+          <p class="exp-desc">Specialized in high‑accuracy annotation, pairwise model evaluation, and multilingual dataset QA for generative AI.</p>
+          <ul class="exp-list">
+            <li><i class="fas fa-check-circle"></i> Annotated 10,000+ structured AI training samples with 98% consistency rate</li>
+            <li><i class="fas fa-check-circle"></i> Performed pairwise comparisons – ranking two AI responses for fluency, relevance, and factual accuracy</li>
+            <li><i class="fas fa-check-circle"></i> Object tagging & labeling across image, audio, and text-based datasets (bounding boxes, classification)</li>
+            <li><i class="fas fa-check-circle"></i> Quality assurance & data integrity reviews following strict client guidelines</li>
+            <li><i class="fas fa-check-circle"></i> Collaborated remotely using Slack, Jira & annotation platforms</li>
+          </ul>
         </div>
-
-        <div class="exp-list">
-          <div class="exp-item reveal">
-            <div>
-              <div class="exp-date">Jan 2025 – Mar 2026</div>
-              <div class="exp-company">RoyalHope Home Based Care</div>
-            </div>
-            <div>
-              <div class="exp-title">Web Developer &amp; Systems Designer</div>
-              <p class="exp-desc">Built a full healthcare platform from the ground up — booking engine, AI chatbot, and GPS features — for a Nairobi-based care provider.</p>
-              <ul class="exp-achievements">
-                <li>Designed responsive healthcare website with 20+ service pages</li>
-                <li>Integrated Google Maps API for precise GPS location capture</li>
-                <li>Built AI FAQ chatbot handling 50+ queries with 95% accuracy</li>
-                <li>Configured cPanel hosting, SSL certificates &amp; professional email</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="exp-item reveal d1">
-            <div>
-              <div class="exp-date">May 2024 – Dec 2025</div>
-              <div class="exp-company">Smart Option Media</div>
-            </div>
-            <div>
-              <div class="exp-title">Web &amp; Digital Systems Designer</div>
-              <p class="exp-desc">Automated workflows, CRM integrations, and web development for a digital marketing agency serving 10+ clients.</p>
-              <ul class="exp-achievements">
-                <li>Built 15+ automation workflows using n8n and Make.com</li>
-                <li>Integrated ChatGPT API for AI-powered customer responses</li>
-                <li>Configured Zendesk &amp; HubSpot CRMs across 10+ client accounts</li>
-                <li>Improved average client SEO rankings by 40%</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="exp-item reveal d2">
-            <div>
-              <div class="exp-date">2023 – 2025</div>
-              <div class="exp-company">Elite Tutors Hub</div>
-            </div>
-            <div>
-              <div class="exp-title">ICT &amp; E-Learning Support Assistant</div>
-              <p class="exp-desc">Managed digital infrastructure for an e-learning platform supporting 500+ active students.</p>
-              <ul class="exp-achievements">
-                <li>Digitized student records for 500+ learners</li>
-                <li>Automated payment tracking — reduced errors by 90%</li>
-                <li>Maintained 99.9% platform uptime across the academic year</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="exp-item reveal d3">
-            <div>
-              <div class="exp-date">2022 – Present</div>
-              <div class="exp-company">Freelance</div>
-            </div>
-            <div>
-              <div class="exp-title">AI Trainer &amp; Web Designer</div>
-              <p class="exp-desc">Prompt engineering, AI model feedback, and small-business website development across multiple industries.</p>
-              <ul class="exp-achievements">
-                <li>Trained AI models on 10,000+ prompts for improved quality</li>
-                <li>Built 8+ websites for local businesses and startups</li>
-                <li>Ongoing technical support for 5+ recurring clients</li>
-              </ul>
-            </div>
-          </div>
+        <div class="exp-card">
+          <div class="exp-header"><span class="exp-title">Web Developer & Systems Designer</span><span class="exp-date">Jan 2025 – Mar 2026</span></div>
+          <div class="exp-company">RoyalHope Home Based Care</div>
+          <p class="exp-desc">Healthcare platform with booking engine, AI chatbot and GPS location features.</p>
+          <ul class="exp-list"><li><i class="fas fa-check-circle"></i> 20+ service pages · Maps API · AI FAQ chatbot (95% accuracy) · cPanel/SSL</li></ul>
+        </div>
+        <div class="exp-card">
+          <div class="exp-header"><span class="exp-title">Freelance IT & Digital Support</span><span class="exp-date">Dec 2025 – Mar 2026</span></div>
+          <div class="exp-company">Royal Hope Home Care & Radiance Skin Care</div>
+          <ul class="exp-list"><li><i class="fas fa-check-circle"></i> Automation workflows (Make, n8n) · website management · technical support</li></ul>
+        </div>
+        <div class="exp-card">
+          <div class="exp-header"><span class="exp-title">Web & Digital Systems Designer</span><span class="exp-date">May 2024 – Dec 2025</span></div>
+          <div class="exp-company">Smart Option Media</div>
+          <ul class="exp-list"><li><i class="fas fa-check-circle"></i> 15+ automation workflows · ChatGPT API · HubSpot/Zendesk · SEO +40%</li></ul>
+        </div>
+        <div class="exp-card">
+          <div class="exp-header"><span class="exp-title">ICT & E‑Learning Support Assistant</span><span class="exp-date">2024 – 2025</span></div>
+          <div class="exp-company">Elite Tutors Hub</div>
+          <ul class="exp-list"><li><i class="fas fa-check-circle"></i> 500+ student records · payment automation (90% error reduction) · 99.9% uptime</li></ul>
+        </div>
+        <div class="exp-card">
+          <div class="exp-header"><span class="exp-title">AI Trainer & Web Designer</span><span class="exp-date">2022 – Present</span></div>
+          <div class="exp-company">Freelance · Global</div>
+          <ul class="exp-list"><li><i class="fas fa-check-circle"></i> 10,000+ prompts trained · 8+ websites for startups · ongoing support for 5+ clients</li></ul>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="divider"></div>
+  <!-- Language & AI Capabilities Section (Swahili native + pairwise) -->
+  <section id="language" style="background: var(--bg-elevated);">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge"><i class="fas fa-language"></i> linguistic & ai expertise</div>
+        <h2>Native Swahili · <span class="gradient-text">AI Data Specialist</span></h2>
+      </div>
+      <div class="skills-grid" style="grid-template-columns: 1fr;">
+        <div class="skill-category">
+          <div class="chip-cloud">
+            <span class="chip" style="background: var(--accent); color: white;">🇰🇪 Native Swahili (Standard & Nairobi dialect)</span>
+            <span class="chip">Pairwise comparisons</span>
+            <span class="chip">Object tagging & labeling</span>
+            <span class="chip">Data annotation & QA</span>
+            <span class="chip">English fluent (C1/C2)</span>
+            <span class="chip">AI model evaluation</span>
+            <span class="chip">Regional language nuance</span>
+          </div>
+          <p style="color: var(--text-secondary); margin-top: 1rem;">Experienced in evaluating AI-generated content, pairwise ranking of model responses, and structured data annotation for Swahili & multilingual datasets. Strong background in transcription, audio/text labeling, and conversational AI feedback.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <!-- SKILLS -->
+  <!-- Skills (technical) -->
   <section id="skills">
-    <div class="section-wrap">
-      <div class="skills-layout">
-        <div>
-          <div class="section-label reveal">Expertise</div>
-          <div class="section-title reveal">The tools<br><em>I work with</em></div>
-          <div class="skill-category reveal">
-            <div class="skill-cat-title">Automation &amp; AI</div>
-            <div class="skill-tags">
-              <span class="skill-tag hi">n8n</span>
-              <span class="skill-tag hi">Make.com</span>
-              <span class="skill-tag hi">Zapier</span>
-              <span class="skill-tag hi">ChatGPT API</span>
-              <span class="skill-tag hi">Prompt Engineering</span>
-              <span class="skill-tag">Webhooks</span>
-              <span class="skill-tag">REST APIs</span>
-              <span class="skill-tag">GoHighLevel</span>
-            </div>
-          </div>
-          <div class="skill-category reveal d1">
-            <div class="skill-cat-title">Web Development</div>
-            <div class="skill-tags">
-              <span class="skill-tag">HTML / CSS / JS</span>
-              <span class="skill-tag">WordPress</span>
-              <span class="skill-tag">Python</span>
-              <span class="skill-tag">Node.js</span>
-              <span class="skill-tag">PHP</span>
-              <span class="skill-tag">MySQL</span>
-              <span class="skill-tag">Git / GitHub</span>
-              <span class="skill-tag">cPanel</span>
-            </div>
-          </div>
-          <div class="skill-category reveal d2">
-            <div class="skill-cat-title">CRM &amp; Infrastructure</div>
-            <div class="skill-tags">
-              <span class="skill-tag">HubSpot</span>
-              <span class="skill-tag">Zendesk</span>
-              <span class="skill-tag">Google Cloud</span>
-              <span class="skill-tag">TCP/IP · DNS</span>
-              <span class="skill-tag">IT Support</span>
-              <span class="skill-tag">Cybersecurity Basics</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="reveal d1">
-          <div class="section-label" style="margin-top:0;">Proficiency</div><br>
-          <div class="prof-item">
-            <div class="prof-header"><span class="prof-name">Workflow Automation (n8n / Make)</span><span class="prof-pct">95%</span></div>
-            <div class="prof-bar"><div class="prof-fill" style="width:95%"></div></div>
-          </div>
-          <div class="prof-item">
-            <div class="prof-header"><span class="prof-name">AI &amp; Prompt Engineering</span><span class="prof-pct">90%</span></div>
-            <div class="prof-bar"><div class="prof-fill" style="width:90%"></div></div>
-          </div>
-          <div class="prof-item">
-            <div class="prof-header"><span class="prof-name">Web Development</span><span class="prof-pct">85%</span></div>
-            <div class="prof-bar"><div class="prof-fill" style="width:85%"></div></div>
-          </div>
-          <div class="prof-item">
-            <div class="prof-header"><span class="prof-name">CRM Integration</span><span class="prof-pct">85%</span></div>
-            <div class="prof-bar"><div class="prof-fill" style="width:85%"></div></div>
-          </div>
-          <div class="prof-item">
-            <div class="prof-header"><span class="prof-name">Python / Scripting</span><span class="prof-pct">75%</span></div>
-            <div class="prof-bar"><div class="prof-fill" style="width:75%"></div></div>
-          </div>
-          <div class="prof-item">
-            <div class="prof-header"><span class="prof-name">IT Support &amp; Networking</span><span class="prof-pct">80%</span></div>
-            <div class="prof-bar"><div class="prof-fill" style="width:80%"></div></div>
-          </div>
-        </div>
+    <div class="container">
+      <div class="section-header"><div class="badge"><i class="fas fa-cog"></i> tech stack</div><h2>Automation & <span class="gradient-text">development</span> arsenal</h2></div>
+      <div class="skills-grid">
+        <div class="skill-category"><h4><i class="fas fa-bolt"></i> Automation & AI</h4><div class="chip-cloud"><span class="chip">n8n</span><span class="chip">Make.com</span><span class="chip">Zapier</span><span class="chip">ChatGPT API</span><span class="chip">Prompt Engineering</span><span class="chip">Webhooks</span><span class="chip">REST APIs</span><span class="chip">GoHighLevel</span></div></div>
+        <div class="skill-category"><h4><i class="fas fa-code"></i> Web Development</h4><div class="chip-cloud"><span class="chip">HTML/JS/CSS</span><span class="chip">WordPress</span><span class="chip">Python</span><span class="chip">Node.js</span><span class="chip">PHP/MySQL</span><span class="chip">Git/GitHub</span><span class="chip">cPanel</span></div></div>
+        <div class="skill-category"><h4><i class="fas fa-database"></i> CRM & Infra</h4><div class="chip-cloud"><span class="chip">HubSpot</span><span class="chip">Zendesk</span><span class="chip">Google Cloud</span><span class="chip">DNS/TCP/IP</span><span class="chip">IT Support</span></div></div>
+        <div class="skill-category"><h4><i class="fas fa-chart-line"></i> Proficiency levels</h4><div class="chip-cloud"><span class="chip">Workflow Automation 95%</span><span class="chip">AI/LLM Engineering 90%</span><span class="chip">Web Dev 85%</span><span class="chip">CRM Integration 85%</span></div></div>
       </div>
     </div>
   </section>
 
-  <div class="divider"></div>
-
-  <!-- PROJECTS -->
+  <!-- Projects -->
   <section id="projects">
-    <div class="section-wrap">
-      <div class="section-label reveal">Portfolio</div>
-      <div class="section-title reveal">Selected<br><em>projects</em></div>
-
+    <div class="container">
+      <div class="section-header"><div class="badge"><i class="fas fa-laptop-code"></i> featured work</div><h2>Recent <span class="gradient-text">systems & AI</span> projects</h2></div>
       <div class="projects-grid">
-
-        <div class="project-card featured reveal">
-          <div class="proj-icon">⚙️</div>
-          <div class="proj-title">Workflow Automation Suite</div>
-          <p class="proj-desc">15+ production automation workflows connecting CRMs, email platforms, social media, and analytics tools. Saved clients 300+ hours/year. Integrated ChatGPT for AI-powered responses and multi-step lead nurturing sequences.</p>
-          <div class="tech-chips">
-            <span class="tech-chip">n8n</span><span class="tech-chip">Make.com</span><span class="tech-chip">HubSpot</span><span class="tech-chip">Webhooks</span><span class="tech-chip">ChatGPT API</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/TeemoreG" target="_blank" rel="noopener" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
-          </div>
-        </div>
-
-        <div class="project-card reveal d1">
-          <div class="proj-icon">🏥</div>
-          <div class="proj-title">RoyalHope Home Care</div>
-          <p class="proj-desc">Healthcare platform with appointment booking, AI chatbot, GPS location picker, and WhatsApp integration. Serving patients across Nairobi.</p>
-          <div class="tech-chips">
-            <span class="tech-chip">JS</span><span class="tech-chip">Maps API</span><span class="tech-chip">cPanel</span>
-          </div>
-          <div class="project-links">
-            <a href="https://royalhopecare.co.ke" target="_blank" rel="noopener" class="project-link"><i class="fas fa-external-link-alt"></i> Live site</a>
-          </div>
-        </div>
-
-        <div class="project-card reveal d2">
-          <div class="proj-icon">📈</div>
-          <div class="proj-title">SmartOption Media</div>
-          <p class="proj-desc">Digital marketing agency site with CRM automation, lead tracking, and automated reporting dashboards. Increased qualified leads by 40%.</p>
-          <div class="tech-chips">
-            <span class="tech-chip">HubSpot</span><span class="tech-chip">Zendesk</span><span class="tech-chip">Analytics</span>
-          </div>
-          <div class="project-links">
-            <a href="https://smartoptionmedia.com" target="_blank" rel="noopener" class="project-link"><i class="fas fa-external-link-alt"></i> Live site</a>
-          </div>
-        </div>
-
-        <div class="project-card reveal d3">
-          <div class="proj-icon">🎓</div>
-          <div class="proj-title">Elite Tutors LMS</div>
-          <p class="proj-desc">Custom LMS with automated enrollment, M-Pesa payment integration, and student progress tracking for 500+ learners.</p>
-          <div class="tech-chips">
-            <span class="tech-chip">PHP / JS</span><span class="tech-chip">MySQL</span><span class="tech-chip">M-Pesa</span>
-          </div>
-          <div class="project-links">
-            <a href="https://elitetutorshub.com" target="_blank" rel="noopener" class="project-link"><i class="fas fa-external-link-alt"></i> Live site</a>
-          </div>
-        </div>
-
-        <div class="project-card reveal d4">
-          <div class="proj-icon">🤖</div>
-          <div class="proj-title">AI Chatbot — Farmers Platform</div>
-          <p class="proj-desc">Python NLP chatbot for an agricultural e-learning platform. Handles 100+ daily queries with 95% accuracy — automated replies, happy farmers.</p>
-          <div class="tech-chips">
-            <span class="tech-chip">Python</span><span class="tech-chip">NLP</span><span class="tech-chip">Flask</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/TeemoreG" target="_blank" rel="noopener" class="project-link"><i class="fab fa-github"></i> Source code</a>
-          </div>
-        </div>
-
+        <div class="project-card"><div class="project-icon">⚙️</div><div class="project-title">Workflow Automation Suite</div><p class="project-desc">15+ automations connecting CRMs, email, social & ChatGPT API — saved 300+ hours/year.</p><div class="tech-stack"><span>n8n</span><span>Make</span><span>HubSpot</span></div><a href="https://github.com/TeemoreG" class="project-link"><i class="fab fa-github"></i> GitHub →</a></div>
+        <div class="project-card"><div class="project-icon">🏥</div><div class="project-title">RoyalHope Home Care</div><p class="project-desc">Healthcare platform + AI chatbot + GPS picker + WhatsApp integration.</p><div class="tech-stack"><span>JS</span><span>Maps API</span><span>cPanel</span></div><a href="https://royalhopecare.co.ke" class="project-link"><i class="fas fa-external-link-alt"></i> Live →</a></div>
+        <div class="project-card"><div class="project-icon">🤖</div><div class="project-title">Swahili AI Evaluator</div><p class="project-desc">Pairwise comparison framework for Swahili LLM outputs (fluency/accuracy).</p><div class="tech-stack"><span>Python</span><span>LLM</span><span>Data Annotation</span></div><a href="#" class="project-link"><i class="fas fa-chart-simple"></i> Case study</a></div>
+        <div class="project-card"><div class="project-icon">📈</div><div class="project-title">SmartOption Media</div><p class="project-desc">Marketing automation dashboards + lead tracking: +40% qualified leads.</p><div class="tech-stack"><span>HubSpot</span><span>Zendesk</span></div><a href="https://smartoptionmedia.com" class="project-link"><i class="fas fa-external-link-alt"></i> Visit →</a></div>
+        <div class="project-card"><div class="project-icon">🎓</div><div class="project-title">Elite Tutors LMS</div><p class="project-desc">Custom LMS + M-Pesa integration + automated enrollment for 500+ learners.</p><div class="tech-stack"><span>PHP/JS</span><span>MySQL</span></div><a href="https://elitetutorshub.com" class="project-link"><i class="fas fa-globe"></i> Live →</a></div>
+        <div class="project-card"><div class="project-icon">🌾</div><div class="project-title">Farmers AI Chatbot</div><p class="project-desc">Python NLP chatbot for agricultural e‑learning, 95% accuracy, 100+ daily queries.</p><div class="tech-stack"><span>Python</span><span>Flask</span></div><a href="https://github.com/TeemoreG" class="project-link"><i class="fab fa-github"></i> Source →</a></div>
       </div>
     </div>
   </section>
 
-  <div class="divider"></div>
-
-  <!-- TESTIMONIALS -->
-  <section id="testimonials">
-    <div class="section-wrap">
-      <div class="section-label reveal">Social proof</div>
-      <div class="section-title reveal">What clients<br><em>say</em></div>
-      <div class="testi-grid">
-        <div class="testi-card reveal">
-          <span class="quote-mark">"</span>
-          <p class="testi-text">Timothy built our healthcare website from scratch and delivered beyond expectations. The booking system works flawlessly and our clients love the chatbot. Highly recommend!</p>
-          <div class="testi-author">
-            <div class="testi-avatar">AN</div>
-            <div>
-              <div class="testi-name">Ann Njoki</div>
-              <div class="testi-role">Business Developer, RoyalHope Home Care</div>
-            </div>
-          </div>
-        </div>
-        <div class="testi-card reveal d1">
-          <span class="quote-mark">"</span>
-          <p class="testi-text">Timothy is incredibly reliable and technically sharp. He automated our entire client onboarding process and saved us hours of manual work every week. A pleasure to work with.</p>
-          <div class="testi-author">
-            <div class="testi-avatar" style="background:rgba(14,116,144,0.15);color:#38bdf8;border-color:rgba(14,116,144,0.3);">FN</div>
-            <div>
-              <div class="testi-name">Fani Nur</div>
-              <div class="testi-role">Director, Smart Option Media</div>
-            </div>
-          </div>
-        </div>
-        <div class="testi-card reveal d2">
-          <span class="quote-mark">"</span>
-          <p class="testi-text">Timothy revamped our e-learning platform and made it so much easier to manage. The automated payment tracking alone was a game-changer. Will definitely work with him again.</p>
-          <div class="testi-author">
-            <div class="testi-avatar" style="background:rgba(100,100,80,0.2);color:#c8b87a;border-color:rgba(100,100,80,0.3);">RK</div>
-            <div>
-              <div class="testi-name">Robert Karanja</div>
-              <div class="testi-role">Director, Elite Tutors Hub</div>
-            </div>
-          </div>
-        </div>
+  <!-- Testimonials -->
+  <section id="testimonials" style="background: var(--bg-elevated);">
+    <div class="container">
+      <div class="section-header"><div class="badge"><i class="fas fa-star"></i> kind words</div><h2>What <span class="gradient-text">clients</span> say</h2></div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card"><div class="quote">“</div><p class="testimonial-text">Timothy built our healthcare platform and the AI chatbot integration is flawless. He also annotated complex Swahili datasets with incredible precision.</p><div class="testimonial-author"><div class="avatar">AN</div><div><strong>Ann Njoki</strong><div style="font-size:0.7rem;">RoyalHope Home Care</div></div></div></div>
+        <div class="testimonial-card"><div class="quote">“</div><p class="testimonial-text">Reliable, fast, and extremely sharp with automation. He automated our entire client onboarding and saved hours every week.</p><div class="testimonial-author"><div class="avatar">FN</div><div><strong>Fani Nur</strong><div style="font-size:0.7rem;">Smart Option Media</div></div></div></div>
+        <div class="testimonial-card"><div class="quote">“</div><p class="testimonial-text">The LMS he revamped cut our admin work by 80%. His AI data annotation background made our models way more accurate.</p><div class="testimonial-author"><div class="avatar">RK</div><div><strong>Robert Karanja</strong><div style="font-size:0.7rem;">Elite Tutors Hub</div></div></div></div>
       </div>
     </div>
   </section>
 
-  <div class="divider"></div>
-
-  <!-- CERTIFICATIONS -->
+  <!-- Education & certs -->
   <section id="certifications">
-    <div class="section-wrap">
-      <div class="section-label reveal">Credentials</div>
-      <div class="section-title reveal">Education &amp;<br><em>certifications</em></div>
-      <div class="edu-block reveal">
-        <i class="fas fa-graduation-cap edu-icon"></i>
-        <div>
-          <div class="edu-deg">BSc Information Technology — Karatina University</div>
-          <div class="edu-detail">2021–2025 · Second Class Upper Honours · Focus on AI &amp; Systems Integration · GPA 3.2 / 4.0</div>
-        </div>
-      </div>
-      <div class="certs-strip reveal">
-        <div class="cert-chip"><i class="fab fa-google"></i> Google IT Support (in progress)</div>
-        <div class="cert-chip"><i class="fas fa-robot"></i> AI Prompt Engineering — Vanderbilt / Coursera</div>
-        <div class="cert-chip"><i class="fas fa-code"></i> n8n Automation Badge</div>
-        <div class="cert-chip"><i class="fas fa-network-wired"></i> Networking Fundamentals</div>
-        <div class="cert-chip"><i class="fas fa-shield-alt"></i> Cybersecurity Awareness</div>
-        <div class="cert-chip"><i class="fas fa-cloud"></i> Google Cloud Basics</div>
-      </div>
+    <div class="container">
+      <div class="section-header"><div class="badge"><i class="fas fa-graduation-cap"></i> credentials</div><h2>Education & <span class="gradient-text">certifications</span></h2></div>
+      <div class="edu-block"><i class="fas fa-university" style="font-size: 1.8rem; color: var(--accent);"></i><div><div style="font-weight: 700;">BSc Information Technology, Karatina University</div><div style="color: var(--text-secondary);">2021–2025 · Second Class Upper Honours · AI & Systems Integration · GPA 3.2/4.0</div></div></div>
+      <div class="certs-strip"><span class="cert-chip"><i class="fab fa-google"></i> Google IT Support</span><span class="cert-chip"><i class="fas fa-robot"></i> AI Prompt Engineering (Vanderbilt)</span><span class="cert-chip"><i class="fas fa-code"></i> n8n Automation</span><span class="cert-chip"><i class="fas fa-network-wired"></i> Networking Fundamentals</span><span class="cert-chip"><i class="fas fa-cloud"></i> Google Cloud Basics</span></div>
     </div>
   </section>
 
-  <div class="divider"></div>
-
-  <!-- CONTACT -->
+  <!-- Contact -->
   <section id="contact">
-    <div class="section-wrap">
-      <div class="section-label">Contact</div>
-      <div class="section-title">Let's build<br><em>something great</em></div>
-      <p class="contact-sub">Open to freelance projects, full-time roles, and interesting collaborations. Remote or Nairobi-based — timezone flexible.</p>
-      <div class="contact-links">
-        <a href="mailto:timblax0@gmail.com" class="contact-link primary"><i class="fas fa-envelope"></i> timblax0@gmail.com</a>
-        <a href="tel:+254740940395" class="contact-link ghost"><i class="fas fa-phone-alt"></i> +254 740 940 395</a>
-        <a href="https://linkedin.com/in/timothy-karanja-65737b277" target="_blank" rel="noopener" class="contact-link ghost"><i class="fab fa-linkedin"></i> LinkedIn</a>
-        <a href="https://github.com/TeemoreG" target="_blank" rel="noopener" class="contact-link ghost"><i class="fab fa-github"></i> GitHub</a>
-        <a href="https://docs.google.com/document/d/1Wo3kyteQ96IQLk43bAiRUDFsuBU4i9uP/edit?usp=drive_link&ouid=107989905331542175879&rtpof=true&sd=true" target="_blank" rel="noopener" class="contact-link ghost"><i class="fas fa-file-alt"></i> Download CV</a>
-      </div>
-      <div class="contact-info">
-        <div><div class="ci-label">Location</div><div class="ci-value">Nairobi, Kenya · GMT+3</div></div>
-        <div><div class="ci-label">Availability</div><div class="ci-value">Freelance · Full-time · Remote</div></div>
-        <div><div class="ci-label">Languages</div><div class="ci-value">English (fluent) · Kiswahili (native)</div></div>
-        <div><div class="ci-label">Open to</div><div class="ci-value">Relocation considered</div></div>
+    <div class="container">
+      <div class="contact-grid">
+        <div><div class="badge">let's connect</div><h2>Build intelligent <span class="gradient-text">systems together</span></h2><p style="color: var(--text-secondary); max-width: 400px;">Freelance, full‑time, or collaboration — remote or Nairobi based. I reply within 24h.</p><div class="contact-links"><a href="mailto:timblax0@gmail.com" class="contact-btn"><i class="fas fa-envelope"></i> timblax0@gmail.com</a><a href="tel:+254740940395" class="contact-btn"><i class="fas fa-phone-alt"></i> +254 740 940 395</a><a href="https://linkedin.com/in/timothy-karanja-65737b277" class="contact-btn"><i class="fab fa-linkedin"></i> LinkedIn</a><a href="https://github.com/TeemoreG" class="contact-btn"><i class="fab fa-github"></i> GitHub</a></div></div>
+        <div style="background: var(--bg-surface); border-radius: 1.5rem; padding: 1.5rem; border:1px solid var(--border-light);"><i class="fas fa-map-marker-alt" style="color: var(--accent);"></i> Nairobi, Kenya · GMT+3<br><i class="fas fa-clock"></i> Available 10+ hrs/week<br><i class="fas fa-language"></i> English (fluent) · Kiswahili (native)<br><i class="fas fa-chart-line"></i> Open to relocation</div>
       </div>
     </div>
   </section>
+</main>
+<footer>© 2026 Timothy Njenga Karanja — AI & Automation Specialist. All systems optimized.</footer>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>© 2026 Timothy Njenga Karanja · AI &amp; Automation Specialist</p>
-    <p>
-      <a href="https://github.com/TeemoreG" target="_blank" rel="noopener">GitHub</a> ·
-      <a href="https://linkedin.com/in/timothy-karanja-65737b277" target="_blank" rel="noopener">LinkedIn</a> ·
-      <a href="mailto:timblax0@gmail.com">timblax0@gmail.com</a>
-    </p>
-  </footer>
-
-  <script>
-    // Nav shrink on scroll
-    window.addEventListener('scroll', () => {
-      document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+<script>
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('.navbar');
+    if(window.scrollY > 20) nav.style.backgroundColor = 'rgba(255,255,255,0.96)';
+    else nav.style.backgroundColor = 'rgba(255,255,255,0.92)';
+  });
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if(href === '#') return;
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
-
-    // Scroll reveal
-    const ro = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.08 });
-    document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
-
-    // Proficiency bars
-    const bo = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting)
-          e.target.querySelectorAll('.prof-fill').forEach(b => b.classList.add('on'));
-      });
-    }, { threshold: 0.2 });
-    const sk = document.getElementById('skills');
-    if (sk) bo.observe(sk);
-
-    // Smooth scroll — only for on-page anchors
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-      link.addEventListener('click', e => {
-        const href = link.getAttribute('href');
-        if (href === '#') return;
-        e.preventDefault();
-        const target = document.querySelector(href);
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    });
-  </script>
+  });
+</script>
 </body>
 </html>
